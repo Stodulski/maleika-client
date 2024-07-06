@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: montserrat;
+    src: url("./assets/Montserrat.ttf");
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: montserrat;
+    src: url("./assets/Montserrat-Medium.ttf");
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: montserrat;
+    src: url("./assets/Montserrat-Bold.ttf");
+    font-weight: 800;
+    font-style: normal;
+}
+
+.main {
+    background-image: url("/bg.webp");
+    min-height: 100vh;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    font-family: montserrat;
+}
