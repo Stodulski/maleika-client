@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 
 import useAudioPlayer from "../hooks/useAudioPlayer";
 
+import AudioView from "./audioView";
+
 export const AudioSection = () => {
     const [audioURL, setAudioURL] = useState("");
     const { handleChangeInput, searchAudio } = useAudioPlayer();
@@ -44,18 +46,7 @@ export const AudioSection = () => {
                 </button>
             </div>
             {audioURL.length > 0 && (
-                <audio
-                    controls
-                    className="w-full hidden"
-                    autoPlay
-                    id="audioPlayer"
-                >
-                    <source
-                        src={audioURL}
-                        type="audio/wav"
-                        className="w-full"
-                    />
-                </audio>
+               <AudioView audioURL={audioURL}/>
             )}
         </section>
     );
