@@ -4,7 +4,7 @@ import { RecordSection } from "../components/recordSection";
 
 export const Main = () => {
     return (
-        <main className="main flex flex-col justify-center items-center pb-10 px-10">
+        <main className="main flex flex-col justify-center items-center pb-10 px-10 relative">
             <img
                 src="/logoWhite.png"
                 alt="Maleika moments"
