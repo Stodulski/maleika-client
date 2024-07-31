@@ -39,8 +39,10 @@
     border-top-color: #ffffff;
     border-radius: 50%;
     animation: spin 1s linear infinite;
-    margin: auto; 
-    
+    margin: auto;
+}
+.image {
+    box-shadow: rgb(0, 0, 0) 0px 20px 30px -10px;
 }
 
 @keyframes spin {
