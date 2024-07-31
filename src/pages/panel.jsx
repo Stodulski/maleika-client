@@ -16,7 +16,7 @@ export const Panel = () => {
     const fetchData = async () => {
         try {
             const response = await api.get("/get");
-            setData(response.data);
+            updateData(response.data);
         } catch (error) {
             toast.error("Error cargando los códigos, recargue la página", {
                 duration: Infinity,
@@ -26,6 +26,7 @@ export const Panel = () => {
 
     const updateData = (codes) => {
         setData(codes);
+        setFilteredData(codes);
     };
     useEffect(() => {
         fetchData();
