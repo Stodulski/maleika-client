@@ -1,22 +1,34 @@
 import { useState, useRef, useEffect } from "react";
 
+import { toast } from "sonner";
+
 const useRecordAudio = () => {
     const [isRecording, setIsRecording] = useState(false);
     const [audioBlob, setAudioBlob] = useState(null);
     const [audioURL, setAudioURL] = useState("");
-    const [audioTimeoutValue, setAudioTimeoutValue] = useState(3);
-    const [audioTimeout, setAudioTimeout] = useState(false);
     const mediaRecorderRef = useRef(null);
     const audioChunksRef = useRef([]);
+    const handleStartRecording = async (e) => {
+        let cuenta = 3;
+        let notificationPrepare = toast.info(`Empieza a grabar en ${cuenta}`, {
+            duration: 1000,
+        });
+        const countInterval = setInterval(() => {
+            cuenta--;
+            toast.dismiss(notificationPrepare);
+            notificationPrepare = toast.info(`Empieza a grabar en ${cuenta}`, {
+                duration: 1000,
+            });
+            if (cuenta === 0) clearInterval(countInterval);
+        }, 1000);
+        e.target.disabled = true;
 
-    const changeAudioTimeoutValue = (value) => {
-        setAudioTimeoutValue(value);
-    };
-
-    const handleStartRecording = async () => {
-        setAudioTimeout(true);
         setTimeout(async () => {
-            setAudioTimeout(false);
+            toast.dismiss(notificationPrepare);
+            e.target.disabled = false;
+            const notificationRecording = toast.warning("Grabando...", {
+                duration: Infinity,
+            });
             const stream = await navigator.mediaDevices.getUserMedia({
                 audio: true,
             });
@@ -34,6 +46,8 @@ const useRecordAudio = () => {
                 const audioUrl = URL.createObjectURL(blob);
                 setAudioBlob(blob);
                 setAudioURL(audioUrl);
+                toast.dismiss(notificationRecording);
+                toast.dismiss(notificationPrepare);
             };
 
             mediaRecorderRef.current.start();
@@ -43,8 +57,6 @@ const useRecordAudio = () => {
 
     const handleStopRecording = () => {
         mediaRecorderRef.current.stop();
-        setIsRecording(false);
-        setAudioTimeoutValue(3);
     };
 
     const handleCancel = () => {
@@ -69,9 +81,6 @@ const useRecordAudio = () => {
         handleStopRecording,
         handleCancel,
         handleFileChange,
-        changeAudioTimeoutValue,
-        audioTimeout,
-        audioTimeoutValue,
         audioBlob,
         audioURL,
         isRecording,

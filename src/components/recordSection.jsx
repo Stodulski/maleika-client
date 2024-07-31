@@ -1,7 +1,6 @@
 import React from "react";
 
 import { PopUp } from "./popUp";
-import { AudioWait } from "./audioWait";
 
 import useRecordAudio from "../hooks/useRecordAudio";
 
@@ -11,9 +10,7 @@ export const RecordSection = () => {
         handleStopRecording,
         handleCancel,
         handleFileChange,
-        changeAudioTimeoutValue,
-        audioTimeoutValue,
-        audioTimeout,
+
         audioBlob,
         audioURL,
         isRecording,
@@ -28,7 +25,7 @@ export const RecordSection = () => {
                     handleCancel={handleCancel}
                 />
             )}
-            {audioTimeout && <AudioWait />}
+
             <section className="flex flex-col max-w-[700px] w-[85vw] gap-y-5 pt-5 text-center sm:text-left">
                 <h2 className="text-white text-2xl font-semibold">
                     ¿Queres materializar momentos en una joya?
@@ -54,20 +51,11 @@ export const RecordSection = () => {
                         Subir un audio
                     </label>
                     <button
-                        className="w-full bg-red-700 rounded-full py-2.5 text-white hover:bg-red-600"
+                        className="w-full bg-red-700 rounded-full py-2.5 text-white hover:bg-red-600 disabled:hover:bg-red-800 disabled:bg-red-800"
                         onClick={
                             isRecording
                                 ? handleStopRecording
-                                : () => {
-                                      let timeoutInterval = setInterval(() => {
-                                          changeAudioTimeoutValue(
-                                              audioTimeoutValue - 1
-                                          );
-                                          if (audioTimeout === 0)
-                                              clearInterval(timeoutInterval);
-                                      }, 1000);
-                                      handleStartRecording();
-                                  }
+                                : (e) => handleStartRecording(e)
                         }
                     >
                         {isRecording

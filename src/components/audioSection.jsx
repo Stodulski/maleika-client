@@ -2,12 +2,18 @@ import React, { useState, useEffect } from "react";
 
 import useAudioPlayer from "../hooks/useAudioPlayer";
 
-import AudioView from "./audioView";
-
 export const AudioSection = () => {
     const [audioURL, setAudioURL] = useState("");
     const { handleChangeInput, searchAudio } = useAudioPlayer();
-    
+    useEffect(() => {
+        const audioElement = document.getElementById("audioPlayer");
+        if (audioElement) {
+            audioElement.addEventListener("loadeddata", () => {
+                audioElement.play();
+            });
+            audioElement.addEventListener("ended", () => setAudioURL(""));
+        }
+    }, [audioURL]);
     return (
         <section className="flex flex-col max-w-[700px] w-[85vw] gap-y-5 border-b-[1px] border-gray-200 pb-5 text-center sm:text-left">
             <h1 className="text-white text-3xl font-semibold">
@@ -38,7 +44,18 @@ export const AudioSection = () => {
                 </button>
             </div>
             {audioURL.length > 0 && (
-               <AudioView audioURL={audioURL}/>
+                <audio
+                    controls
+                    className="w-full hidden"
+                    autoPlay
+                    id="audioPlayer"
+                >
+                    <source
+                        src={audioURL}
+                        type="audio/wav"
+                        className="w-full"
+                    />
+                </audio>
             )}
         </section>
     );

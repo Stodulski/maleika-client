@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { toast } from "sonner";
 
 export const Login = () => {
     const [userData, setUserData] = useState({ usuario: "", contraseña: "" });
@@ -6,13 +8,28 @@ export const Login = () => {
         const { name, value } = e.target;
         setUserData({ ...userData, [name]: value });
     };
+    const handleSubmitLogin = async (e) => {
+        e.preventDefault();
+        const { VITE_API } = import.meta.env;
+        try {
+            const response = await axios.post(`${VITE_API}/api/login`, {
+                usuario: userData.usuario,
+                contraseña: userData.contraseña,
+            });
+            const token = response.data.token;
+            localStorage.setItem("token", token);
+            toast.success("Sesion iniciada con exito.", { duration: 2000 });
+        } catch (error) {
+            toast.error("Contraseña o usuario incorrecto.", { duration: 2000 });
+        }
+    };
     return (
         <main className="w-full h-screen grid place-content-center bg-zinc-900">
             <div className="card px-8 py-6 rounded-lg bg-gray-800 w-72">
                 <h1 className="text-center font-bold text-3xl text-white">
                     Admin
                 </h1>
-                <form className="my-6">
+                <form className="my-6" onSubmit={(e) => handleSubmitLogin(e)}>
                     <input
                         className="p-2 my-2 rounded w-[100%] focus:outline-blue-600"
                         placeholder="Usuario"
