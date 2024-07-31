@@ -10,12 +10,12 @@ export const Main = () => {
                 alt="Maleika moments"
                 className="w-[300px] my-10 mx-auto"
             />
-            <div className="flex flex-col justify-evenly items-center gap-10 xl:flex-row">
+            <div className="flex flex-col justify-evenly items-center gap-10 lg:flex-row">
                 <div>
                     <AudioSection />
                     <RecordSection />
                 </div>
-                <img src="/image.jpeg" alt="" className="w-[70%] rounded-full image xl:w-[25%]"/>
+                <img src="/image.jpeg" alt="" className="w-[70%] rounded-full image lg:w-[25%]"/>
             </div>
         </main>
     );
