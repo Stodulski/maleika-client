@@ -29,11 +29,15 @@ export const PopUp = ({ audioURL, audioBlob, handleCancel }) => {
                         e
                     )
                 }
-                className="w-full max-w-[700px] fixed sm:my-5 sm:rounded-lg bg-slate-200 bottom-0 top-0 flex flex-col justify-evenly p-10 gap-y-5 overflow-y-auto"
+                className="w-full max-w-[700px] fixed sm:my-5 sm:rounded-lg bg-slate-200 m-auto right-0 left-0 bottom-0 top-0 flex flex-col justify-evenly p-10 gap-y-5 overflow-y-auto"
             >
                 {codigo.length > 0 ? (
                     <div className="w-full h-full flex flex-col justify-between">
-                        <img src="/logoBlack.png" alt="" className="w-32 mx-auto" />
+                        <img
+                            src="/logoBlack.png"
+                            alt=""
+                            className="w-32 mx-auto"
+                        />
                         <div className="grid place-content-center h-full text-center gap-3">
                             <span className="font-bold text-xl">
                                 El codigo de tu moments es:

@@ -7,7 +7,7 @@ export const PopUpForm = ({
     handleCancel,
 }) => {
     return (
-        <div className="fixed right-0 left-0 top-0 bottom-0">
+        <>
             <h3 className="text-3xl">Enviar audio</h3>
             <p className="text-sm">
                 Complete todos los campos para recibir su codigo.
@@ -84,6 +84,6 @@ export const PopUpForm = ({
                     Cancelar
                 </button>
             </div>
-        </div>
+        </>
     );
 };
