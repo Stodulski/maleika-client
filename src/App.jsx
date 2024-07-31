@@ -23,11 +23,7 @@ export const App = () => {
                     {isAuthenticated && (
                         <>
                             <Route exact path="/panel" element={<Panel />} />
-                            <Route
-                                exact
-                                path="/login"
-                                element={<Navigate to={"/panel"} />}
-                            />
+                            
                         </>
                     )}
                     <Route exact path="/login" element={<Login />} />
