@@ -19,18 +19,19 @@ export const App = () => {
         <>
             <Router>
                 <Routes>
-                    <Route path="/" element={<Main />} />
+                    <Route exact path="/" element={<Main />} />
                     {isAuthenticated && (
                         <>
-                            <Route path="/panel" element={<Panel />} />
+                            <Route exact path="/panel" element={<Panel />} />
                             <Route
+                                exact
                                 path="/login"
                                 element={<Navigate to={"/panel"} />}
                             />
                         </>
                     )}
-                    <Route path="/login" element={<Login />} />
-                    <Route path="*" element={<Navigate to={"/"} />} />
+                    <Route exact path="/login" element={<Login />} />
+                    <Route exact path="*" element={<Navigate to={"/"} />} />
                 </Routes>
             </Router>
         </>
