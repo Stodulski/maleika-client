@@ -10,7 +10,6 @@ export const RecordSection = () => {
         handleStopRecording,
         handleCancel,
         handleFileChange,
-
         audioBlob,
         audioURL,
         isRecording,

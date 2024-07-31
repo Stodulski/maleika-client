@@ -19,7 +19,10 @@ const useFormSubmit = (handleUpload) => {
             setTimeout(async () => {
                 const response = await axios.post(
                     `${VITE_API}/api/create`,
-                    { ...formData, archivo: result.metadata.name },
+                    {
+                        ...formData,
+                        archivo: result.metadata.name.toUpperCase(),
+                    },
                     {
                         headers: {
                             "Content-Type": "application/json",

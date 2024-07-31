@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import useFormHandler from "../hooks/useFormHandler";
 import useFormSubmit from "../hooks/useFormSubmit";
-import useUploadToStorage from "../hooks/useUploadToStorage";
+import useStorage from "../hooks/useStorage";
 
 import { PopUpForm } from "./popUpForm";
 import { Loading } from "./loading";
 
 export const PopUp = ({ audioURL, audioBlob, handleCancel }) => {
     const [codigo, setCodigo] = useState("");
-    const { handleUpload } = useUploadToStorage();
+    const { handleUpload } = useStorage();
     const { formData, handleChange } = useFormHandler({
         nombre: "",
         email: "",
@@ -33,7 +33,7 @@ export const PopUp = ({ audioURL, audioBlob, handleCancel }) => {
             >
                 {codigo.length > 0 ? (
                     <div className="w-full h-full flex flex-col justify-between">
-                        <img src="/logoBlack.png" alt="" className="w-32" />
+                        <img src="/logoBlack.png" alt="" className="w-32 mx-auto" />
                         <div className="grid place-content-center h-full text-center gap-3">
                             <span className="font-bold text-xl">
                                 El codigo de tu moments es:

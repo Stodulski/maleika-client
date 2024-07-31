@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
 
 const {
     VITE_FIREBASE_APIKEY,
@@ -21,4 +21,4 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
-export { storage, ref, uploadBytes, getDownloadURL };
+export { storage, ref, uploadBytes, getDownloadURL, deleteObject };
