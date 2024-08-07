@@ -3,7 +3,16 @@ import { IoTrash, IoPencil } from "react-icons/io5";
 
 import useAudioController from "../hooks/useAudioController";
 
-export const Code = ({ archivo, id, data, updateData }) => {
+export const Code = ({
+    archivo,
+    id,
+    data,
+    updateData,
+    nombre,
+    email,
+    telefono,
+    comprador,
+}) => {
     const [newCode, setNewCode] = useState("");
     const { handleDelete, toggleEdit, handleUpdateAudioName, toggleEditMode } =
         useAudioController();
@@ -42,9 +51,17 @@ export const Code = ({ archivo, id, data, updateData }) => {
                     </div>
                 </div>
             )}
-            <article className="flex w-[300px] justify-evenly items-center h-12 bg-zinc-950 text-white px-5">
+            <article className="flex w-[300px] justify-evenly items-center gap-1 text-center flex-col p-5 bg-zinc-950 text-white">
                 <span className="text-xl w-full">{archivo}</span>
-                <div className="flex gap-2.5">
+                <span className="text-xl w-full">{nombre}</span>
+                <span className="text-xl w-full">{email}</span>
+                <span className="text-xl w-full">{telefono}</span>
+                <span className="text-xl w-full">
+                    {comprador
+                        ? "Compro en la tienda"
+                        : "No compro en la tienda"}
+                </span>
+                <div className="flex gap-10 mt-2.5">
                     <IoTrash
                         className="text-2xl cursor-pointer hover:text-red-600"
                         onClick={() =>

@@ -72,6 +72,10 @@ export const Panel = () => {
                                 archivo={item.archivo}
                                 key={item._id}
                                 updateData={updateData}
+                                nombre={item.nombre}
+                                email={item.email}
+                                telefono={item.telefono}
+                                comprador={item.comprador}
                                 data={data}
                             />
                         ))}
